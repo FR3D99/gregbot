@@ -43,6 +43,35 @@ async def daylist(ctx, *daylist_name: str):
     else:
         await ctx.send("no new words, fuck you")
     mpu.io.write('wordcount.json', word_counts_dict)
+
+@bot.command(name='score')
+async def score(ctx):
+    # Check if the file exists
+    file_path = 'drink_counter.json'
+
+    if os.path.exists(file_path):
+        # If the file exists, read the data
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+    else:
+        # If the file doesn't exist, no scores to display
+        await ctx.send("No scores available. Idiot.")
+        return
+
+    # Sort users by their scores in descending order
+    sorted_users = sorted(data.items(), key=lambda x: x[1], reverse=True)
+
+    # Generate and send the formatted message with rankings
+    message = ""
+    for rank, (user_id, score) in enumerate(sorted_users, start=1):
+        user = await bot.fetch_user(int(user_id))
+        line = f"#{rank}: {user.name} - {score} drinks"
+        # Append trophy emoji for the #1 user
+        if rank == 1:
+            line += " :trophy:"
+        message += line + "\n"
+
+    await ctx.send(message)
     
 @bot.command(name='drink')
 async def drink(ctx, amount: int = 1):
