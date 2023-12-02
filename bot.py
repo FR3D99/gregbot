@@ -29,7 +29,7 @@ async def on_ready():
 # daylist
 @bot.command(name='daylist')
 async def daylist(ctx, *playlistname: str):
-    wordcount = mpu.io.read('data.json')
+    wordcount = mpu.io.read('wordcount.json')
     newwords = []
     for word in playlistname:
         word = word.lower()
@@ -42,8 +42,8 @@ async def daylist(ctx, *playlistname: str):
         await ctx.send(f"new words!!!!!!!!!!!!!!!: {newwords}")
     else:
         await ctx.send("no new words, fuck you")
-    mpu.io.write('data.json', wordcount)
-
+    mpu.io.write('wordcount.json', wordcount)
+    
 @bot.command(name='drink')
 async def drink(ctx, amount: int = 1):
     # Check if the user has a local file
