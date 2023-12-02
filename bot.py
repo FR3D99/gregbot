@@ -13,7 +13,7 @@ token = str(os.getenv("TOKEN"))
 # bot setup or something idk
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='?', description="hey", intents=intents)
+bot = commands.Bot(command_prefix='/', description="hey", intents=intents)
 
 # log in
 @bot.event
