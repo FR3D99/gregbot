@@ -29,7 +29,7 @@ async def on_ready():
 # daylist
 @bot.command()
 async def daylist(ctx, *playlistname: str):
-    wordcount = mpu.io.read('data.json')
+    wordcount = mpu.io.read('wordcount.json')
     newwords = []
     for word in playlistname:
         word = word.lower()
@@ -42,6 +42,6 @@ async def daylist(ctx, *playlistname: str):
         await ctx.send(f"new words!!!!!!!!!!!!!!!: {newwords}")
     else:
         await ctx.send("no new words, fuck you")
-    mpu.io.write('data.json', wordcount)
+    mpu.io.write('wordcount.json', wordcount)
     
 bot.run(token)
