@@ -13,6 +13,6 @@ multidict==6.0.4
 numpy==1.26.2
 pycord==0.1.1
 python-dotenv==1.0.0
-setuptools==69.0.2
+setuptools==65.5.1
 typing_extensions==4.8.0
 yarl==1.9.3
