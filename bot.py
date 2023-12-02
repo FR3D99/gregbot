@@ -28,21 +28,21 @@ async def on_ready():
 
 # daylist
 @bot.command(name='daylist')
-async def daylist(ctx, *playlistname: str):
-    wordcount = mpu.io.read('wordcount.json')
-    newwords = []
-    for word in playlistname:
+async def daylist(ctx, *daylist_name: str):
+    word_counts_dict = mpu.io.read('wordcount.json')
+    new_words = []
+    for word in daylist_name:
         word = word.lower()
-        if word in wordcount:
-            wordcount[word] = wordcount[word] + 1
+        if word in word_counts_dict:
+            word_counts_dict[word] = word_counts_dict[word] + 1
         else:
-            newwords.append(word)
-            wordcount[word] = 1
-    if newwords:
-        await ctx.send(f"new words!!!!!!!!!!!!!!!: {newwords}")
+            new_words.append(word)
+            word_counts_dict[word] = 1
+    if new_words:
+        await ctx.send(f"new words!!!!!!!!!!!!!!!: {new_words}")
     else:
         await ctx.send("no new words, fuck you")
-    mpu.io.write('wordcount.json', wordcount)
+    mpu.io.write('wordcount.json', word_counts_dict)
     
 @bot.command(name='drink')
 async def drink(ctx, amount: int = 1):
