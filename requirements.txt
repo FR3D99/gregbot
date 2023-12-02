@@ -1,0 +1,18 @@
+aiohttp==3.9.1
+aiosignal==1.3.1
+attrs==23.1.0
+discord==2.3.2
+discord.py==2.3.2
+ffmpeg-python==0.2.0
+frozenlist==1.4.0
+future==0.18.3
+idna==3.6
+imageio-ffmpeg==0.4.9
+mpu @ git+https://github.com/MartinThoma/mpu.git@b0a8029ca291002a5dcb477d410eff6818d39c58
+multidict==6.0.4
+numpy==1.26.2
+pycord==0.1.1
+python-dotenv==1.0.0
+setuptools==65.5.1
+typing_extensions==4.8.0
+yarl==1.9.3
