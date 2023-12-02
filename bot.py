@@ -27,7 +27,7 @@ async def on_ready():
     print('------')
 
 # daylist
-@bot.command()
+@bot.command(name='daylist')
 async def daylist(ctx, *playlistname: str):
     wordcount = mpu.io.read('data.json')
     newwords = []
@@ -43,5 +43,27 @@ async def daylist(ctx, *playlistname: str):
     else:
         await ctx.send("no new words, fuck you")
     mpu.io.write('data.json', wordcount)
-    
+
+@bot.command(name='drink')
+async def drink(ctx, amount: int = 1):
+    # Check if the user has a local file
+    user_file_path = 'drink_counter.json'
+
+    if os.path.exists(user_file_path):
+        # If the file exists, read the data
+        with open(user_file_path, 'r') as file:
+            data = json.load(file)
+            user_counter = data.get(str(ctx.author.id), 0)
+            user_counter += amount
+    else:
+        # If the file doesn't exist, create a new one
+        user_counter = amount
+
+    # Update the data and write it back to the file
+    data[str(ctx.author.id)] = user_counter
+    with open(user_file_path, 'w') as file:
+        json.dump(data, file)
+
+    await ctx.send(f'{ctx.author.mention} has successfully updated their total. Which now stands at {user_counter}')
+
 bot.run(token)
