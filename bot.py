@@ -26,6 +26,23 @@ async def on_ready():
         print(e)
     print('------')
 
+@bot.event
+async def on_message(message):
+    # Ignore messages from the bot itself to prevent infinite loops
+    if message.author == bot.user:
+        return
+
+    # Check if the message is "GM" (case-insensitive)
+    if message.content.lower() == 'gm':
+        await message.channel.send('gm')
+
+    # Check if the message is "GN" (case-insensitive)
+    if message.content.lower() == 'gn':
+        await message.channel.send('gn')
+
+    # Allow other commands to be processed
+    await bot.process_commands(message)
+
 # daylist
 @bot.command(name='daylist')
 async def daylist(ctx, *daylist_name: str):
