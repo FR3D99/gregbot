@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix='/', description="hey", intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     try:
-        synced = await bot.tree.sync(guild=discord.Object(id=687820446724521984))
+        synced = await bot.tree.sync()
         print(f"Synced {len(synced)} commands(s)")
     except Exception as e:
         print(e)
@@ -52,7 +52,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # daylist
-@bot.command(name='daylist', guild=discord.Object(id=687820446724521984))
+@bot.command(name='daylist')
 async def daylist(ctx, *daylist_name: str):
     word_counts_dict = mpu.io.read('wordcount.json')
     new_words = []
@@ -69,7 +69,7 @@ async def daylist(ctx, *daylist_name: str):
         await ctx.send("no new words, fuck you")
     mpu.io.write('wordcount.json', word_counts_dict)
 
-@bot.command(name='score', guild=discord.Object(id=687820446724521984))
+@bot.command(name='score')
 async def score(ctx):
     # Check if the file exists
     file_path = 'drink_counter.json'
@@ -98,7 +98,7 @@ async def score(ctx):
 
     await ctx.send(message)
     
-@bot.command(name='drink', guild=discord.Object(id=687820446724521984))
+@bot.command(name='drink')
 async def drink(ctx, amount: int = 1):
     # Check if the user has a local file
     user_file_path = 'drink_counter.json'
