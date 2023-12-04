@@ -44,6 +44,10 @@ async def on_message(message):
     if 'https://www.ozbargain.com.au/node/' in message.content:
         await message.channel.send('thanks just bought')
 
+    # Check if the message is a thank you to gregbot
+    if message.content.lower() == 'thanks gregbot':
+        await message.channel.send('no problem')
+
     # Allow other commands to be processed
     await bot.process_commands(message)
 
