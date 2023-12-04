@@ -40,6 +40,10 @@ async def on_message(message):
     if message.content.lower() == 'gn':
         await message.channel.send('gn')
 
+    # Check if the message is an OzBargain link
+    if 'https://www.ozbargain.com.au/node/' in message.content:
+        await message.channel.send('thanks just bought')
+
     # Allow other commands to be processed
     await bot.process_commands(message)
 
